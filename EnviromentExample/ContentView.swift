@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@Observable class PersonViewMOdel {
+@Observable class PersonViewModel {
     var firsName: String = "Ron"
     var lastName: String = "Erez"
     
@@ -31,12 +31,21 @@ import SwiftUI
 }
 
 struct ContentView: View {
-    @Environment(PersonViewMOdel.self) private var personviewmodel
+    
+    @Environment(PersonViewModel.self) private var personViewModel
+
     var body: some View {
+        @Bindable var personViewModel = personViewModel
+
         VStack {
-            Text(personviewmodel.getName)
+            
+            Text(personViewModel.getName)
+            
+            TextField("Enter Your First Name", text: $personViewModel.firsName)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+    
             Button("Change Person") {
-                personviewmodel.changePerson()
+                personViewModel.changePerson()
             }
         }
         .padding()
@@ -45,5 +54,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environment(PersonViewMOdel())
+        .environment(PersonViewModel())
 }

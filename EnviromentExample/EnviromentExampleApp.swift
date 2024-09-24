@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct EnviromentExampleApp: App {
-    @State private var personViewModel = PersonViewMOdel()
+    @State private var personViewModel = PersonViewModel()
     
     var body: some Scene {
         WindowGroup {
